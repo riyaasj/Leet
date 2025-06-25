@@ -15,15 +15,16 @@ public:
         if(root == NULL){
             return 0;
         }
-        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+        int lh = maxDepth(root->left), rh = maxDepth(root->right);
+        if(lh == -1 || rh == -1 || abs(lh - rh) > 1){
+            return -1;
+        }
+        return max(lh, rh) + 1;
     }
     bool isBalanced(TreeNode* root) {
-        if(root == NULL){
-            return true;
+        if(maxDepth(root) == -1){
+            return false;
         }
-        if(abs(maxDepth(root->left) - maxDepth(root->right)) <= 1){
-            return isBalanced(root->left) && isBalanced(root->right);
-        }
-        return false;
+        return true;
     }
 };
