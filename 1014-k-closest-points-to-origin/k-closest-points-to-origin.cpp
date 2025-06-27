@@ -10,7 +10,7 @@ public:
             }
         }
         vector<vector<int>> ans;
-        for(int i = 0; i < k; i++){
+        while(!pq.empty()){
             ans.push_back(points[pq.top()[1]]);
             pq.pop();
         } 
