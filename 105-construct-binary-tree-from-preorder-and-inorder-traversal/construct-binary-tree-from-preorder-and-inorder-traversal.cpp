@@ -22,10 +22,7 @@ public:
             }
         }
         p++;
-        TreeNode* node = new TreeNode(val);
-        cout << val;
-        node->left = build(preorder, inorder, p, is, i - 1);
-        node->right = build(preorder, inorder, p, i + 1, ie);
+        TreeNode* node = new TreeNode(val, build(preorder, inorder, p, is, i - 1), build(preorder, inorder, p, i + 1, ie));
         return node;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
