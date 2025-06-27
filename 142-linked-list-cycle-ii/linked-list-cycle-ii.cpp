@@ -10,9 +10,6 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         int pos = -1;
-        if(head == NULL || head->next == NULL){
-            return NULL;
-        }
         ListNode* a = head, *b = head;
         while(b && b->next){
             a = a->next;
