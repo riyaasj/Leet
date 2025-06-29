@@ -1,16 +1,17 @@
 class Solution {
 public:
-    int solve(int n, vector<int> &m){
-        if(n == 0 || n == 1){
+    
+    int fib(int n) {
+        if(n <= 1){
             return n;
         }
-        if(!m[n]){
-            m[n] = solve(n - 1, m) + solve(n - 2, m);
+        int a = 0;
+        int b = 1;
+        for(int i = 2; i <= n; i++){
+            int t = b;
+            b = a + b;
+            a = t;
         }
-        return m[n];
-    }
-    int fib(int n) {
-        vector<int> m(n + 1, 0);
-        return solve(n, m);
+        return b;
     }
 };
