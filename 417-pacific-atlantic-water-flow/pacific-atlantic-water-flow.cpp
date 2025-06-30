@@ -11,17 +11,12 @@ public:
         }
     }
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int m = heights.size(), n = heights[0].size();
         vector<vector<int>> atlantic(heights.size(), vector<int>(heights[0].size(), 0)), pacific(heights.size(), vector<int>(heights[0].size(), 0)), res;
-        for(int i = 0; i < heights.size(); i++){
-            for(int j = 0; j < heights[0].size(); j++){
-                if((i == 0 || j == 0) && (!pacific[i][j])){
-                    dfs(i, j, pacific, heights);
-                }
-                if((i == heights.size() - 1 || j == heights[0].size() - 1) && (!atlantic[i][j])){
-                    dfs(i, j, atlantic, heights);
-                }
-            }
-        }
+        for(int i = 0; i < m; i++) dfs(i, 0, pacific, heights);        
+        for(int j = 0; j < n; j++) dfs(0, j, pacific, heights); 
+        for(int i = 0; i < m; i++) dfs(i, n - 1, atlantic, heights);    
+        for(int j = 0; j < n; j++) dfs(m - 1, j, atlantic, heights);    
         for(int i = 0; i < heights.size(); i++){
             for(int j = 0; j < heights[0].size(); j++){
                 if(atlantic[i][j] && pacific[i][j]){
