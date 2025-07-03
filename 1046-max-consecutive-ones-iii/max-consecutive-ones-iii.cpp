@@ -4,7 +4,7 @@ public:
         int left = 0, res = 0, z = 0;
         for(int right = 0; right < nums.size(); right++){
             if(nums[right] == 0) z++;
-            while(z > k){
+            if(z > k){
                 if(nums[left] == 0) z--;
                 left++;
             }
