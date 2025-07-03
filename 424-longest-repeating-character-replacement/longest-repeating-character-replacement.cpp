@@ -5,7 +5,7 @@ public:
         vector<int> c(26, 0);
         for(int right = 0; right < s.size(); right++){
             maxFreq = max(maxFreq, ++c[s[right] - 'A']);
-            while((right - left + 1) - maxFreq > k){
+            if((right - left + 1) - maxFreq > k){
                 c[s[left++] - 'A']--;
             }
             res = max(res, right - left + 1);
