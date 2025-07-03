@@ -14,7 +14,6 @@ public:
             maxFreq = max(maxFreq, ++c[s[right] - 'A']);
             while((right - left + 1) - maxFreq > k){
                 c[s[left++] - 'A']--;
-                maxFreq = findMax(c);
             }
             res = max(res, right - left + 1);
         }
