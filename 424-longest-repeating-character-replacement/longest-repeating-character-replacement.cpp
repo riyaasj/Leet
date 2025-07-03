@@ -10,13 +10,15 @@ public:
         return res;
     }
     int characterReplacement(string s, int k) {
-        int left = 0, res = 0;
+        int left = 0, res = 0, maxFreq = 0;
         vector<int> c(26, 0);
         for(int right = 0; right < s.size(); right++){
             c[s[right] - 'A']++;
-            while((right - left + 1) - findMax(c) > k){
+            maxFreq = max(maxFreq, c[s[right] - 'A']);
+            while((right - left + 1) - maxFreq > k){
                 c[s[left] - 'A']--;
                 left++;
+                maxFreq = findMax(c);
             }
             res = max(res, right - left + 1);
         }
