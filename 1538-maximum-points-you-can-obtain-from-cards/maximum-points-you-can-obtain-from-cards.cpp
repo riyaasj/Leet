@@ -9,14 +9,19 @@ public:
         for(int i = 0; i < k; i++){
             cards[j++] = cardPoints[i];
         }
-        int count = 0;
-        for(int i = 0; i < k; i++){
-            count += cards[i];
+        int left = 0, right = 0, count = 0;
+        while(right < k){
+            count += cards[right];
+            right++;
         }
+        right--;
         int res = count;
-        for (int i = k; i < cards.size(); ++i) {
-            count += cards[i] - cards[i - k];
-            res = max(res, count);
+        while(right < cards.size() - 1){
+            count -= cards[left];
+            left++;
+            right++;
+            count += cards[right];
+            res = max(count, res);
         }
         return res;
     }
