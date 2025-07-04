@@ -6,17 +6,16 @@ public:
         }
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
-        int cookie = 0, num = 0;
+        int greed = 0, num = 0;
 
-        for(int greed = 0; greed < g.size(); greed++){
-            while(cookie < s.size() && s[cookie] < g[greed]){
-                cookie++;
+        for(int cookie = 0; cookie < s.size(); cookie++){
+            if(s[cookie] >= g[greed]){
+                num++;
+                greed++;
             }
-            if(cookie == s.size()){
+            if(greed == g.size()){
                 return num;
             }
-            num++;
-            cookie++;
         }
         return num;
     }
