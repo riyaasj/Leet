@@ -12,9 +12,7 @@ public:
             if(s[cookie] >= g[greed]){
                 num++;
                 greed++;
-            }
-            if(greed == g.size()){
-                return num;
+                if(greed == g.size()) return num;
             }
         }
         return num;
