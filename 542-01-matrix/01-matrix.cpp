@@ -8,6 +8,7 @@ public:
                 if(mat[i][j] == 0){
                     q.push({i, j, 0});
                     visited[i][j] = 1;
+                    res[i][j] = 0;
                 }
             }
         }
@@ -15,11 +16,11 @@ public:
             vector<int> curr = q.front();
             q.pop();
             int i = curr[0], j = curr[1], dist = curr[2];
-            res[i][j] = dist;
             for(auto d: distances){
-                if(i + d[0] >= 0 && i + d[0] < mat.size() && j + d[1] >= 0 && j + d[1] < mat[0].size() && !visited[i + d[0]][j + d[1]]){
-                    visited[i + d[0]][j + d[1]] = 1;
-                    q.push({i + d[0], j + d[1], dist + 1});
+                if(curr[0] + d[0] >= 0 && curr[0] + d[0] < mat.size() && curr[1] + d[1] >= 0 && curr[1] + d[1] < mat[0].size() && !visited[curr[0] + d[0]][curr[1] + d[1]]){
+                    visited[curr[0] + d[0]][curr[1] + d[1]] = 1;
+                    res[curr[0] + d[0]][curr[1] + d[1]] = dist + 1;
+                    q.push({curr[0] + d[0], curr[1] + d[1], dist + 1});
                 }
             }
         }
