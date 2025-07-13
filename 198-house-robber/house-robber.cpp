@@ -1,10 +1,11 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        if(nums.size() == 1) return nums[0];
-        int a = nums[0], b = max(nums[0], nums[1]);
-        for(int i = 2; i <= nums.size() - 1; i++){
-            int next = max(a + nums[i], b);
+        int a = 0, b = nums[0];
+        for(int i = 1; i <= nums.size() - 1; i++){
+            int s1 = nums[i], s2 = b;
+            if(i > 1) s1 += a;
+            int next = max(s1, s2);
             a = b;
             b = next;
         }
