@@ -4,15 +4,18 @@ public:
         if (intervals.empty()) return {};
         sort(intervals.begin(), intervals.end());
         vector<vector<int>> res;
-        res.push_back(intervals[0]);
-        for (int i = 1; i < intervals.size(); ++i) {
-            if (intervals[i][0] <= res.back()[1]) {
-                res.back()[1] = max(res.back()[1], intervals[i][1]);
-            } 
-            else {
-                res.push_back(intervals[i]);
+        int start = intervals[0][0], end = intervals[0][1];
+        for(int i = 0; i < intervals.size(); i++){
+            if(intervals[i][0] > end){
+                res.push_back({start, end});
+                start = intervals[i][0];
+                end = intervals[i][1];
+            }
+            else{
+                end = max(end, intervals[i][1]);
             }
         }
+        res.push_back({start, end});
         return res;
     }
 };
