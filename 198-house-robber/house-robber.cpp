@@ -1,13 +1,14 @@
 class Solution {
 public:
-    int solve(vector<int> &nums, int k, vector<int> &v){
-        if(k == 0) return 0;
-        if(k == 1) return nums[0];
-        if(v[k] != -1) return v[k];
-        return v[k] = max(solve(nums, k - 2, v) + nums[k - 1], solve(nums, k - 1, v));
-    }
     int rob(vector<int>& nums) {
-        vector<int> v(nums.size() + 1, -1);
-        return solve(nums, nums.size(), v);
+        if(nums.size() == 1) return nums[0];
+        if(nums.size() == 2) return max(nums[0], nums[1]);
+        int a = nums[0], b = max(nums[0], nums[1]);
+        for(int i = 2; i <= nums.size() - 1; i++){
+            int next = max(a + nums[i], b);
+            a = b;
+            b = next;
+        }
+        return b;
     }
 };
