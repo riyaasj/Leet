@@ -21,6 +21,7 @@ public:
             if(matrix[m][0] <= target && matrix[m].back() >= target){
                 if(bs(matrix[m], target)) return true;
             }
+            if(matrix[m][0] > target) break;
         }
         return false;
     }
