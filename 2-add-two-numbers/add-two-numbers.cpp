@@ -9,39 +9,28 @@
  * };
  */
 class Solution {
-private:
-    ListNode* reverseList(ListNode* head) {
-        ListNode *a = NULL, *b = head;
-        while(b){
-            ListNode *t = b->next;
-            b->next = a;
-            a = b;
-            b = t;
-        }
-        return a;
-    }
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode *a = l1, *b = l2, *d = new ListNode(-1), *temp = d;
-        int c = 0;
-        while(a || b){
-            int d1 = 0, d2 = 0;
-            if(a != NULL){
-                d1 = a->val;
-                a = a->next;
+        ListNode *num1 = l1, *num2 = l2, *head = new ListNode(-1), *curr = head;
+        int carry = 0;
+        while(num1 || num2){
+            int a = 0, b = 0;
+            if(num1){
+                a = num1->val;
             }
-            if(b != NULL){
-                d2 = b->val;
-                b = b->next;
+            if(num2){
+                b = num2->val;
             }
-            int sum = d1 + d2 + c;
-            temp->next = new ListNode(sum % 10);
-            temp = temp->next;
-            c = sum / 10;
+            int sum = a + b + carry;
+            curr->next = new ListNode(sum % 10);
+            carry = sum / 10;
+            if(num1) num1 = num1->next;
+            if(num2) num2 = num2->next;
+            curr = curr->next;
         }
-        if (c) {
-            temp->next = new ListNode(c);
+        if(carry){
+            curr->next = new ListNode(carry);
         }
-        return d->next;
+        return head->next;
     }
 };
