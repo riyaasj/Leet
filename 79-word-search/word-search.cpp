@@ -1,17 +1,14 @@
 class Solution {
 public:
     int search(vector<vector<char>>& board, string word, int index, int i, int j, vector<vector<int>>& vis){
+        if(index == word.size()){
+            return 1;
+        }
         if(i >= board.size() || i < 0 || j >= board[0].size() || j < 0 || vis[i][j]){
             return 0;
         }
         int res = 0;
-        if(index == word.size() - 1){
-            if(board[i][j] == word[index]){
-                return 1;
-            }
-            return 0;
-        }
-        else if(word[index] == board[i][j]){
+        if(word[index] == board[i][j]){
             vis[i][j] = 1;
             res = search(board, word, index + 1, i + 1, j, vis)
             || search(board, word, index + 1, i - 1, j, vis)
