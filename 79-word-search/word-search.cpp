@@ -22,9 +22,11 @@ public:
         int n = board.size(), m = board[0].size();
         for(int i = 0; i < board.size(); i++){
             for(int j = 0; j < board[0].size(); j++){
-                vector<vector<int>> vis(n, vector<int>(m, 0));
-                if(search(board, word, 0, i, j, vis)){
-                    return true;
+                if(board[i][j] == word[0]){
+                    vector<vector<int>> vis(n, vector<int>(m, 0));
+                    if(search(board, word, 0, i, j, vis)){
+                        return true;
+                    }
                 }
             }
         }
