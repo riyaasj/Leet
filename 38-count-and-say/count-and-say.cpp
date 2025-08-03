@@ -3,7 +3,7 @@ public:
     string countAndSay(int n) {
         string res = "1";
         for(int i = 1; i < n; i++){
-            string temp = "";
+            stringstream temp;
             char curr = res[0];
             int index = 0;
             while(index < res.size()){
@@ -12,10 +12,10 @@ public:
                     count++;
                     index++;
                 }
-                temp = temp + to_string(count) + curr;
+                temp << count << curr;
                 curr = res[index];
             }
-            res = temp;
+            res = temp.str();
         }
         return res;
     }
