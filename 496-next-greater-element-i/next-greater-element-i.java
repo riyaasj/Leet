@@ -1,6 +1,6 @@
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        Stack<Integer> s = new Stack<>();
+        Deque<Integer> s = new ArrayDeque<>();
         Map<Integer, Integer> m = new HashMap<>();
         for(int i = nums2.length - 1; i >= 0; i--){
             while(!s.isEmpty() && s.peek() <= nums2[i]){
